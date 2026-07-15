@@ -1,0 +1,16 @@
+yolo:
+  model: yolov8n.pt
+  image_size: 640
+  confidence_threshold: 0.25
+  iou_threshold: 0.45
+  classes:
+    - person
+    - car
+    - truck
+    - bus
+
+outputs:
+  full_frame_detections: outputs/detections/full_frame.jsonl
+  roi_detections: outputs/detections/roi_yolo.jsonl
+  full_frame_metrics: outputs/reports/full_frame_metrics.json
+  roi_metrics: outputs/reports/roi_yolo_metrics.json

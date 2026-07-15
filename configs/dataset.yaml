@@ -1,0 +1,16 @@
+dataset:
+  type: video
+  input_path: data/sample.mp4
+  camera_id: cam_01
+  fps_override: null
+  frame_limit: null
+  start_frame: 0
+  image_extensions:
+    - .jpg
+    - .jpeg
+    - .png
+    - .bmp
+
+annotations:
+  type: none
+  input_path: null

@@ -94,6 +94,8 @@ vision-frontend-simulator/
 │   ├── dataset.yaml
 │   ├── npx_gate.yaml
 │   └── yolo.yaml
+├── common/
+│   └── schemas.py
 ├── data_loader/
 │   ├── dataset_stream.py
 │   └── annotation_loader.py

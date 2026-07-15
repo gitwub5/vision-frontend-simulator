@@ -13,7 +13,16 @@ venv/
 !.env.example
 
 # Experiment outputs and local data
-outputs/
+outputs/*
+!outputs/.gitkeep
+!outputs/detections/
+!outputs/detections/.gitkeep
+!outputs/roi_metadata/
+!outputs/roi_metadata/.gitkeep
+!outputs/visualizations/
+!outputs/visualizations/.gitkeep
+!outputs/reports/
+!outputs/reports/.gitkeep
 data/
 datasets/
 runs/
