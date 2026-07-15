@@ -199,9 +199,12 @@ outputs/visualizations/
 ```text
 vision-frontend-simulator/
 ├── README.md
-├── plan.md
-├── npx_gate_phase1_validation_plan.md
-├── vision_frontend_validation_roadmap.md
+├── docs/
+│   ├── plan.md
+│   ├── npx_gate_phase1_validation_plan.md
+│   └── vision_frontend_validation_roadmap.md
+├── .agents/
+│   └── project_context.md
 ├── configs/
 │   ├── dataset.yaml
 │   ├── npx_gate.yaml
@@ -316,9 +319,10 @@ Rule-based ROI Gate의 한계 사례가 명확히 수집됨
 ## 9. 문서 역할
 
 - `README.md`: 프로젝트 소개, 빠른 시작, 협업자가 봐야 할 요약
-- `plan.md`: 구현 순서와 현재 작업 기준
-- `npx_gate_phase1_validation_plan.md`: Phase 1 세부 검증 계획
-- `vision_frontend_validation_roadmap.md`: 전체 장기 로드맵
+- `docs/plan.md`: 구현 순서와 현재 작업 기준
+- `docs/npx_gate_phase1_validation_plan.md`: Phase 1 세부 검증 계획
+- `docs/vision_frontend_validation_roadmap.md`: 전체 장기 로드맵
+- `.agents/project_context.md`: Codex 또는 자동화 agent가 먼저 확인할 문서 목록과 작업 원칙
 
 ## 10. 다음 작업
 
