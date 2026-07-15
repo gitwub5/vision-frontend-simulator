@@ -7,7 +7,7 @@
 1. `README.md`
    - 프로젝트 목적, 현재 Phase, 협업자가 알아야 할 요약을 확인한다.
 
-2. `docs/plan.md`
+2. `plan.md`
    - 현재 구현 순서, 작업 단위, config 초안, metadata schema를 확인한다.
 
 3. `docs/npx_gate_phase1_validation_plan.md`
@@ -19,7 +19,7 @@
 ## 문서 역할
 
 - `README.md`: 팀원이 처음 보는 프로젝트 소개 문서
-- `docs/plan.md`: 지금 구현을 진행하기 위한 실행 계획
+- `plan.md`: 지금 구현을 진행하기 위한 실행 계획
 - `docs/npx_gate_phase1_validation_plan.md`: Phase 1 상세 설계와 검증 기준
 - `docs/vision_frontend_validation_roadmap.md`: 장기 로드맵과 단계별 성공 기준
 
