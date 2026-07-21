@@ -37,7 +37,9 @@ class YoloConfig:
 @dataclass(frozen=True)
 class YoloOutputPaths:
     full_frame_detections: Path = Path("outputs/detections/full_frame.jsonl")
+    roi_detections: Path = Path("outputs/detections/roi_yolo.jsonl")
     full_frame_metrics: Path = Path("outputs/reports/full_frame_metrics.json")
+    roi_metrics: Path = Path("outputs/reports/roi_yolo_metrics.json")
 
     @classmethod
     def from_mapping(cls, config: dict[str, Any]) -> "YoloOutputPaths":
@@ -46,7 +48,9 @@ class YoloOutputPaths:
             full_frame_detections=Path(
                 outputs.get("full_frame_detections", cls.full_frame_detections)
             ),
+            roi_detections=Path(outputs.get("roi_detections", cls.roi_detections)),
             full_frame_metrics=Path(outputs.get("full_frame_metrics", cls.full_frame_metrics)),
+            roi_metrics=Path(outputs.get("roi_metrics", cls.roi_metrics)),
         )
 
 
