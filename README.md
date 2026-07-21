@@ -85,6 +85,7 @@ Rule-based ROI Gate의 한계 사례 수집 완료
 vision-frontend-simulator/
 ├── README.md
 ├── plan.md
+├── requirements.txt
 ├── docs/
 │   ├── npx_gate_phase1_validation_plan.md
 │   └── vision_frontend_validation_roadmap.md
@@ -118,7 +119,10 @@ vision-frontend-simulator/
 ├── experiments/
 │   ├── run_full_frame_baseline.py
 │   ├── run_rule_roi_baseline.py
+│   ├── inspect_dataset_stream.py
 │   └── compare_results.py
+├── tests/
+│   └── test_dataset_stream.py
 └── outputs/
     ├── detections/
     ├── roi_metadata/
