@@ -133,11 +133,11 @@ docs/tasks/task3_rule_based_roi_gate.md
   - [x] temporal hold
   - [x] periodic full-frame trigger
   - [x] ROI 과다/대면적 full-frame fallback
-- [ ] Task 4. ROI Metadata 저장
-  - [ ] ROI metadata schema 확정
-  - [ ] JSONL writer 구현
-  - [ ] frame별 trigger type 기록
-  - [ ] crop inference/evaluation에서 재사용 가능한 형식 확인
+- [x] Task 4. ROI Metadata 저장
+  - [x] ROI metadata schema 확정
+  - [x] JSONL writer 구현
+  - [x] frame별 trigger type 기록
+  - [x] crop inference/evaluation에서 재사용 가능한 형식 확인
 - [ ] Task 5. Full-frame YOLO Baseline
   - [ ] YOLOv8n full-frame inference 구현
   - [ ] detection JSONL 저장
@@ -240,7 +240,7 @@ outputs/
 - Phase 1에서는 `motion_map`만 사용해도 되지만, Phase 2 SNN 확장을 위해 `on_event`, `off_event`, `motion_map` 생성 코드는 분리한다.
 - ROI가 너무 많거나 전체 면적이 너무 크면 full-frame fallback이 가능해야 한다.
 
-### [ ] Task 4. ROI Metadata 저장
+### [x] Task 4. ROI Metadata 저장
 
 목표:
 
@@ -251,6 +251,7 @@ outputs/
 
 ```text
 outputs/roi_metadata/rule_roi.jsonl
+outputs/roi_metadata/gate_decisions.jsonl
 ```
 
 권장 metadata 필드:
@@ -349,7 +350,8 @@ vision-frontend-simulator/
 │   ├── vision_frontend_validation_roadmap.md
 │   └── tasks/
 │       ├── task2_dataset_stream_loader.md
-│       └── task3_rule_based_roi_gate.md
+│       ├── task3_rule_based_roi_gate.md
+│       └── task4_roi_metadata.md
 ├── .agents/
 │   └── project_context.md
 ├── configs/
@@ -385,7 +387,8 @@ vision-frontend-simulator/
 │   └── compare_results.py
 ├── tests/
 │   ├── test_dataset_stream.py
-│   └── test_npx_gate.py
+│   ├── test_npx_gate.py
+│   └── test_roi_metadata.py
 └── outputs/
     ├── detections/
     ├── roi_metadata/
@@ -481,12 +484,12 @@ Rule-based ROI Gate의 한계 사례가 명확히 수집됨
 
 ## 12. 다음 작업
 
-바로 다음 구현 작업은 Task 4이다.
+바로 다음 구현 작업은 Task 5이다.
 
 ```text
-1. GateDecision을 ROIMetadata로 변환
-2. ROI metadata schema와 trigger type 기록 확인
-3. JSONL writer append/write 정책 정리
-4. rule_roi.jsonl 생성 script 연결
-5. Task 4 구현 설명 문서 작성
+1. YOLOv8n full-frame inference 구현
+2. full-frame detection JSONL 저장
+3. inference latency 측정
+4. workload metric 기록
+5. Task 5 구현 설명 문서 작성
 ```

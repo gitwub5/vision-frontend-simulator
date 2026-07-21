@@ -80,6 +80,34 @@ class ROIMetadata:
 
 
 @dataclass(frozen=True)
+class GateFrameMetadata:
+    camera_id: str
+    frame_id: int
+    timestamp: float
+    trigger_type: TriggerType
+    roi_count: int
+    should_run_full_frame: bool
+    gate_latency_ms: float
+    original_frame_size: FrameSize
+    analysis_frame_size: FrameSize
+    source: str = "rule_based_roi_gate"
+
+    def to_json_dict(self) -> dict[str, Any]:
+        return {
+            "camera_id": self.camera_id,
+            "frame_id": self.frame_id,
+            "timestamp": self.timestamp,
+            "trigger_type": self.trigger_type.value,
+            "roi_count": self.roi_count,
+            "should_run_full_frame": self.should_run_full_frame,
+            "gate_latency_ms": self.gate_latency_ms,
+            "original_frame_size": self.original_frame_size.as_list(),
+            "analysis_frame_size": self.analysis_frame_size.as_list(),
+            "source": self.source,
+        }
+
+
+@dataclass(frozen=True)
 class Detection:
     camera_id: str
     frame_id: int
