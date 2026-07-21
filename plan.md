@@ -347,6 +347,7 @@ vision-frontend-simulator/
 ├── requirements.txt
 ├── docs/
 │   ├── npx_gate_phase1_validation_plan.md
+│   ├── smoke_test.md
 │   ├── vision_frontend_validation_roadmap.md
 │   └── tasks/
 │       ├── task2_dataset_stream_loader.md
@@ -356,7 +357,9 @@ vision-frontend-simulator/
 │   └── project_context.md
 ├── configs/
 │   ├── dataset.yaml
+│   ├── dataset.smoke.yaml
 │   ├── npx_gate.yaml
+│   ├── npx_gate.smoke.yaml
 │   └── yolo.yaml
 ├── common/
 │   └── schemas.py
@@ -389,6 +392,8 @@ vision-frontend-simulator/
 │   ├── test_dataset_stream.py
 │   ├── test_npx_gate.py
 │   └── test_roi_metadata.py
+├── tools/
+│   └── create_smoke_video.py
 └── outputs/
     ├── detections/
     ├── roi_metadata/
@@ -479,6 +484,7 @@ Rule-based ROI Gate의 한계 사례가 명확히 수집됨
 - `README.md`: 프로젝트 소개, 빠른 시작, 협업자가 봐야 할 요약
 - `plan.md`: 구현 순서와 현재 작업 기준
 - `docs/npx_gate_phase1_validation_plan.md`: Phase 1 세부 검증 계획
+- `docs/smoke_test.md`: 고정 카메라 synthetic smoke test 생성 및 실행 방법
 - `docs/vision_frontend_validation_roadmap.md`: 전체 장기 로드맵
 - `.agents/project_context.md`: Codex 또는 자동화 agent가 먼저 확인할 문서 목록과 작업 원칙
 
