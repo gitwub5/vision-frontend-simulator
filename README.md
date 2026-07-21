@@ -164,6 +164,7 @@ outputs/visualizations/
 - `README.md`: 프로젝트 소개와 협업자가 알아야 할 요약
 - `plan.md`: 구현 순서와 현재 작업 계획
 - `docs/npx_gate_phase1_validation_plan.md`: Phase 1 상세 검증 계획
+- `docs/tasks/task2_dataset_stream_loader.md`: Dataset Stream Loader 구현 의도와 사용법
 - `docs/vision_frontend_validation_roadmap.md`: 장기 검증 로드맵
 - `.agents/project_context.md`: Codex 또는 자동화 agent가 먼저 확인할 문서 목록과 작업 원칙
 
