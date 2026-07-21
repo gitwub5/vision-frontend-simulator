@@ -104,6 +104,7 @@ docs/tasks/task3_rule_based_roi_gate.md
 | Task 6. ROI YOLO Inference | Owner B | Owner A | `gpu_inference/yolo_roi.py`, `gpu_inference/coordinate_restore.py` |
 | Task 7. Evaluation | Owner B | Owner A | `evaluation/`, `experiments/compare_results.py`, `outputs/reports/` |
 | Task 8. Visualization | Owner B | Owner A | `outputs/visualizations/`, visualization helper modules |
+| Support. Sample Data Utility | Owner A | Owner B | `tools/download_sample_data.py`, `docs/sample_data.md`, `configs/dataset.*.yaml` |
 
 ## 4. 구현 체크리스트
 
@@ -169,6 +170,14 @@ docs/tasks/task3_rule_based_roi_gate.md
 - [ ] Phase 5. Hardware-oriented Spec 도출
 - [ ] Phase 6. 실제 Edge Pipeline PoC
 - [ ] Phase 7. 사업화 기준 검증
+
+### Support Tasks
+
+- [x] Synthetic fixed-camera smoke video 생성 도구
+- [x] 공개 sample dataset download script
+- [x] dataset별 usage note 정리
+- [x] `data/` 저장 경로 표준화
+- [x] smoke test 실행 안내 출력
 
 ## 5. Phase 1 검증 질문
 
@@ -347,6 +356,7 @@ vision-frontend-simulator/
 ├── requirements.txt
 ├── docs/
 │   ├── npx_gate_phase1_validation_plan.md
+│   ├── sample_data.md
 │   ├── smoke_test.md
 │   ├── vision_frontend_validation_roadmap.md
 │   └── tasks/
@@ -393,6 +403,7 @@ vision-frontend-simulator/
 │   ├── test_npx_gate.py
 │   └── test_roi_metadata.py
 ├── tools/
+│   ├── download_sample_data.py
 │   └── create_smoke_video.py
 └── outputs/
     ├── detections/
@@ -484,6 +495,7 @@ Rule-based ROI Gate의 한계 사례가 명확히 수집됨
 - `README.md`: 프로젝트 소개, 빠른 시작, 협업자가 봐야 할 요약
 - `plan.md`: 구현 순서와 현재 작업 기준
 - `docs/npx_gate_phase1_validation_plan.md`: Phase 1 세부 검증 계획
+- `docs/sample_data.md`: 공개 sample data 다운로드와 수동 준비 안내
 - `docs/smoke_test.md`: 고정 카메라 synthetic smoke test 생성 및 실행 방법
 - `docs/vision_frontend_validation_roadmap.md`: 전체 장기 로드맵
 - `.agents/project_context.md`: Codex 또는 자동화 agent가 먼저 확인할 문서 목록과 작업 원칙

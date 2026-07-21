@@ -88,6 +88,7 @@ vision-frontend-simulator/
 ├── requirements.txt
 ├── docs/
 │   ├── npx_gate_phase1_validation_plan.md
+│   ├── sample_data.md
 │   ├── smoke_test.md
 │   ├── vision_frontend_validation_roadmap.md
 │   └── tasks/
@@ -134,6 +135,7 @@ vision-frontend-simulator/
 │   ├── test_npx_gate.py
 │   └── test_roi_metadata.py
 ├── tools/
+│   ├── download_sample_data.py
 │   └── create_smoke_video.py
 └── outputs/
     ├── detections/
@@ -167,6 +169,13 @@ python tools/create_smoke_video.py
 python experiments/run_rule_roi_baseline.py --dataset-config configs/dataset.smoke.yaml --limit 60
 ```
 
+공개 sample data는 아래 도구로 준비할 수 있습니다.
+
+```bash
+python tools/download_sample_data.py --list
+python tools/download_sample_data.py --dataset virat-aerial-sample
+```
+
 우선순위 데이터셋:
 
 - OD-VIRAT Tiny
@@ -184,6 +193,7 @@ python experiments/run_rule_roi_baseline.py --dataset-config configs/dataset.smo
 - `README.md`: 프로젝트 소개와 협업자가 알아야 할 요약
 - `plan.md`: 구현 순서와 현재 작업 계획
 - `docs/npx_gate_phase1_validation_plan.md`: Phase 1 상세 검증 계획
+- `docs/sample_data.md`: 공개 sample data 다운로드와 수동 준비 안내
 - `docs/smoke_test.md`: 고정 카메라 synthetic smoke test 생성 및 실행 방법
 - `docs/tasks/task2_dataset_stream_loader.md`: Dataset Stream Loader 구현 의도와 사용법
 - `docs/tasks/task3_rule_based_roi_gate.md`: Rule-based ROI Gate 구현 의도와 사용법
