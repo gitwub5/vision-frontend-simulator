@@ -1,0 +1,16 @@
+dataset:
+  type: video
+  input_path: data/smoke/fixed_camera_motion.mp4
+  camera_id: smoke_fixed_01
+  fps_override: 30
+  frame_limit: 180
+  start_frame: 0
+  image_extensions:
+    - .jpg
+    - .jpeg
+    - .png
+    - .bmp
+
+annotations:
+  type: none
+  input_path: null

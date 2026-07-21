@@ -104,6 +104,7 @@ docs/tasks/task3_rule_based_roi_gate.md
 | Task 6. ROI YOLO Inference | Owner B | Owner A | `gpu_inference/yolo_roi.py`, `gpu_inference/coordinate_restore.py` |
 | Task 7. Evaluation | Owner B | Owner A | `evaluation/`, `experiments/compare_results.py`, `outputs/reports/` |
 | Task 8. Visualization | Owner B | Owner A | `outputs/visualizations/`, visualization helper modules |
+| Support. Sample Data Utility | Owner A | Owner B | `tools/download_sample_data.py`, `docs/sample_data.md`, `configs/dataset.*.yaml` |
 
 ## 4. 구현 체크리스트
 
@@ -133,11 +134,11 @@ docs/tasks/task3_rule_based_roi_gate.md
   - [x] temporal hold
   - [x] periodic full-frame trigger
   - [x] ROI 과다/대면적 full-frame fallback
-- [ ] Task 4. ROI Metadata 저장
-  - [ ] ROI metadata schema 확정
-  - [ ] JSONL writer 구현
-  - [ ] frame별 trigger type 기록
-  - [ ] crop inference/evaluation에서 재사용 가능한 형식 확인
+- [x] Task 4. ROI Metadata 저장
+  - [x] ROI metadata schema 확정
+  - [x] JSONL writer 구현
+  - [x] frame별 trigger type 기록
+  - [x] crop inference/evaluation에서 재사용 가능한 형식 확인
 - [ ] Task 5. Full-frame YOLO Baseline
   - [ ] YOLOv8n full-frame inference 구현
   - [ ] detection JSONL 저장
@@ -169,6 +170,14 @@ docs/tasks/task3_rule_based_roi_gate.md
 - [ ] Phase 5. Hardware-oriented Spec 도출
 - [ ] Phase 6. 실제 Edge Pipeline PoC
 - [ ] Phase 7. 사업화 기준 검증
+
+### Support Tasks
+
+- [x] Synthetic fixed-camera smoke video 생성 도구
+- [x] 공개 sample dataset download script
+- [x] dataset별 usage note 정리
+- [x] `data/` 저장 경로 표준화
+- [x] smoke test 실행 안내 출력
 
 ## 5. Phase 1 검증 질문
 
@@ -240,7 +249,7 @@ outputs/
 - Phase 1에서는 `motion_map`만 사용해도 되지만, Phase 2 SNN 확장을 위해 `on_event`, `off_event`, `motion_map` 생성 코드는 분리한다.
 - ROI가 너무 많거나 전체 면적이 너무 크면 full-frame fallback이 가능해야 한다.
 
-### [ ] Task 4. ROI Metadata 저장
+### [x] Task 4. ROI Metadata 저장
 
 목표:
 
@@ -251,6 +260,7 @@ outputs/
 
 ```text
 outputs/roi_metadata/rule_roi.jsonl
+outputs/roi_metadata/gate_decisions.jsonl
 ```
 
 권장 metadata 필드:
@@ -346,15 +356,20 @@ vision-frontend-simulator/
 ├── requirements.txt
 ├── docs/
 │   ├── npx_gate_phase1_validation_plan.md
+│   ├── sample_data.md
+│   ├── smoke_test.md
 │   ├── vision_frontend_validation_roadmap.md
 │   └── tasks/
 │       ├── task2_dataset_stream_loader.md
-│       └── task3_rule_based_roi_gate.md
+│       ├── task3_rule_based_roi_gate.md
+│       └── task4_roi_metadata.md
 ├── .agents/
 │   └── project_context.md
 ├── configs/
 │   ├── dataset.yaml
+│   ├── dataset.smoke.yaml
 │   ├── npx_gate.yaml
+│   ├── npx_gate.smoke.yaml
 │   └── yolo.yaml
 ├── common/
 │   └── schemas.py
@@ -385,7 +400,11 @@ vision-frontend-simulator/
 │   └── compare_results.py
 ├── tests/
 │   ├── test_dataset_stream.py
-│   └── test_npx_gate.py
+│   ├── test_npx_gate.py
+│   └── test_roi_metadata.py
+├── tools/
+│   ├── download_sample_data.py
+│   └── create_smoke_video.py
 └── outputs/
     ├── detections/
     ├── roi_metadata/
@@ -476,17 +495,19 @@ Rule-based ROI Gate의 한계 사례가 명확히 수집됨
 - `README.md`: 프로젝트 소개, 빠른 시작, 협업자가 봐야 할 요약
 - `plan.md`: 구현 순서와 현재 작업 기준
 - `docs/npx_gate_phase1_validation_plan.md`: Phase 1 세부 검증 계획
+- `docs/sample_data.md`: 공개 sample data 다운로드와 수동 준비 안내
+- `docs/smoke_test.md`: 고정 카메라 synthetic smoke test 생성 및 실행 방법
 - `docs/vision_frontend_validation_roadmap.md`: 전체 장기 로드맵
 - `.agents/project_context.md`: Codex 또는 자동화 agent가 먼저 확인할 문서 목록과 작업 원칙
 
 ## 12. 다음 작업
 
-바로 다음 구현 작업은 Task 4이다.
+바로 다음 구현 작업은 Task 5이다.
 
 ```text
-1. GateDecision을 ROIMetadata로 변환
-2. ROI metadata schema와 trigger type 기록 확인
-3. JSONL writer append/write 정책 정리
-4. rule_roi.jsonl 생성 script 연결
-5. Task 4 구현 설명 문서 작성
+1. YOLOv8n full-frame inference 구현
+2. full-frame detection JSONL 저장
+3. inference latency 측정
+4. workload metric 기록
+5. Task 5 구현 설명 문서 작성
 ```

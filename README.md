@@ -88,15 +88,20 @@ vision-frontend-simulator/
 ├── requirements.txt
 ├── docs/
 │   ├── npx_gate_phase1_validation_plan.md
+│   ├── sample_data.md
+│   ├── smoke_test.md
 │   ├── vision_frontend_validation_roadmap.md
 │   └── tasks/
 │       ├── task2_dataset_stream_loader.md
-│       └── task3_rule_based_roi_gate.md
+│       ├── task3_rule_based_roi_gate.md
+│       └── task4_roi_metadata.md
 ├── .agents/
 │   └── project_context.md
 ├── configs/
 │   ├── dataset.yaml
+│   ├── dataset.smoke.yaml
 │   ├── npx_gate.yaml
+│   ├── npx_gate.smoke.yaml
 │   └── yolo.yaml
 ├── common/
 │   └── schemas.py
@@ -127,7 +132,11 @@ vision-frontend-simulator/
 │   └── compare_results.py
 ├── tests/
 │   ├── test_dataset_stream.py
-│   └── test_npx_gate.py
+│   ├── test_npx_gate.py
+│   └── test_roi_metadata.py
+├── tools/
+│   ├── download_sample_data.py
+│   └── create_smoke_video.py
 └── outputs/
     ├── detections/
     ├── roi_metadata/
@@ -143,6 +152,7 @@ vision-frontend-simulator/
 outputs/detections/full_frame.jsonl
 outputs/detections/roi_yolo.jsonl
 outputs/roi_metadata/rule_roi.jsonl
+outputs/roi_metadata/gate_decisions.jsonl
 outputs/reports/full_frame_metrics.json
 outputs/reports/roi_yolo_metrics.json
 outputs/reports/comparison_report.json
@@ -151,6 +161,20 @@ outputs/visualizations/
 ```
 
 ## 초기 데이터셋
+
+개발 중 smoke test는 외부 dataset 대신 synthetic fixed-camera video를 사용합니다.
+
+```bash
+python tools/create_smoke_video.py
+python experiments/run_rule_roi_baseline.py --dataset-config configs/dataset.smoke.yaml --limit 60
+```
+
+공개 sample data는 아래 도구로 준비할 수 있습니다.
+
+```bash
+python tools/download_sample_data.py --list
+python tools/download_sample_data.py --dataset virat-aerial-sample
+```
 
 우선순위 데이터셋:
 
@@ -169,8 +193,11 @@ outputs/visualizations/
 - `README.md`: 프로젝트 소개와 협업자가 알아야 할 요약
 - `plan.md`: 구현 순서와 현재 작업 계획
 - `docs/npx_gate_phase1_validation_plan.md`: Phase 1 상세 검증 계획
+- `docs/sample_data.md`: 공개 sample data 다운로드와 수동 준비 안내
+- `docs/smoke_test.md`: 고정 카메라 synthetic smoke test 생성 및 실행 방법
 - `docs/tasks/task2_dataset_stream_loader.md`: Dataset Stream Loader 구현 의도와 사용법
 - `docs/tasks/task3_rule_based_roi_gate.md`: Rule-based ROI Gate 구현 의도와 사용법
+- `docs/tasks/task4_roi_metadata.md`: ROI metadata 저장 구현 의도와 사용법
 - `docs/vision_frontend_validation_roadmap.md`: 장기 검증 로드맵
 - `.agents/project_context.md`: Codex 또는 자동화 agent가 먼저 확인할 문서 목록과 작업 원칙
 
