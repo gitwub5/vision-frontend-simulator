@@ -96,7 +96,8 @@ vision-frontend-simulator/
 │       ├── task3_rule_based_roi_gate.md
 │       ├── task4_roi_metadata.md
 │       ├── task5_full_frame_yolo_baseline.md
-│       └── task6_roi_yolo_inference.md
+│       ├── task6_roi_yolo_inference.md
+│       └── task7_evaluation.md
 ├── .agents/
 │   └── project_context.md
 ├── configs/
@@ -123,6 +124,7 @@ vision-frontend-simulator/
 │   ├── yolo_roi.py
 │   └── coordinate_restore.py
 ├── evaluation/
+│   ├── comparison_report.py
 │   ├── detection_metrics.py
 │   ├── roi_containment.py
 │   ├── workload_metrics.py
@@ -138,7 +140,8 @@ vision-frontend-simulator/
 │   ├── test_npx_gate.py
 │   ├── test_roi_metadata.py
 │   ├── test_yolo_full_frame.py
-│   └── test_yolo_roi.py
+│   ├── test_yolo_roi.py
+│   └── test_evaluation.py
 ├── tools/
 │   ├── download_sample_data.py
 │   └── create_smoke_video.py
@@ -205,6 +208,7 @@ python tools/download_sample_data.py --dataset virat-aerial-sample
 - `docs/tasks/task4_roi_metadata.md`: ROI metadata 저장 구현 의도와 사용법
 - `docs/tasks/task5_full_frame_yolo_baseline.md`: Full-frame YOLO baseline 구현 의도와 사용법
 - `docs/tasks/task6_roi_yolo_inference.md`: ROI YOLO inference 구현 의도와 사용법
+- `docs/tasks/task7_evaluation.md`: Evaluation 구현 의도와 사용법
 - `docs/vision_frontend_validation_roadmap.md`: 장기 검증 로드맵
 - `.agents/project_context.md`: Codex 또는 자동화 agent가 먼저 확인할 문서 목록과 작업 원칙
 
