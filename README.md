@@ -91,7 +91,8 @@ vision-frontend-simulator/
 │   ├── vision_frontend_validation_roadmap.md
 │   └── tasks/
 │       ├── task2_dataset_stream_loader.md
-│       └── task3_rule_based_roi_gate.md
+│       ├── task3_rule_based_roi_gate.md
+│       └── task5_full_frame_yolo_baseline.md
 ├── .agents/
 │   └── project_context.md
 ├── configs/
@@ -171,6 +172,7 @@ outputs/visualizations/
 - `docs/npx_gate_phase1_validation_plan.md`: Phase 1 상세 검증 계획
 - `docs/tasks/task2_dataset_stream_loader.md`: Dataset Stream Loader 구현 의도와 사용법
 - `docs/tasks/task3_rule_based_roi_gate.md`: Rule-based ROI Gate 구현 의도와 사용법
+- `docs/tasks/task5_full_frame_yolo_baseline.md`: Full-frame YOLO baseline 구현 의도와 사용법
 - `docs/vision_frontend_validation_roadmap.md`: 장기 검증 로드맵
 - `.agents/project_context.md`: Codex 또는 자동화 agent가 먼저 확인할 문서 목록과 작업 원칙
 
