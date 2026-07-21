@@ -88,7 +88,10 @@ vision-frontend-simulator/
 ├── requirements.txt
 ├── docs/
 │   ├── npx_gate_phase1_validation_plan.md
-│   └── vision_frontend_validation_roadmap.md
+│   ├── vision_frontend_validation_roadmap.md
+│   └── tasks/
+│       ├── task2_dataset_stream_loader.md
+│       └── task3_rule_based_roi_gate.md
 ├── .agents/
 │   └── project_context.md
 ├── configs/
@@ -105,6 +108,7 @@ vision-frontend-simulator/
 │   ├── event_encoder.py
 │   ├── motion_detector.py
 │   ├── roi_generator.py
+│   ├── gate.py
 │   ├── temporal_hold.py
 │   └── metadata.py
 ├── gpu_inference/
@@ -122,7 +126,8 @@ vision-frontend-simulator/
 │   ├── inspect_dataset_stream.py
 │   └── compare_results.py
 ├── tests/
-│   └── test_dataset_stream.py
+│   ├── test_dataset_stream.py
+│   └── test_npx_gate.py
 └── outputs/
     ├── detections/
     ├── roi_metadata/
@@ -165,6 +170,7 @@ outputs/visualizations/
 - `plan.md`: 구현 순서와 현재 작업 계획
 - `docs/npx_gate_phase1_validation_plan.md`: Phase 1 상세 검증 계획
 - `docs/tasks/task2_dataset_stream_loader.md`: Dataset Stream Loader 구현 의도와 사용법
+- `docs/tasks/task3_rule_based_roi_gate.md`: Rule-based ROI Gate 구현 의도와 사용법
 - `docs/vision_frontend_validation_roadmap.md`: 장기 검증 로드맵
 - `.agents/project_context.md`: Codex 또는 자동화 agent가 먼저 확인할 문서 목록과 작업 원칙
 

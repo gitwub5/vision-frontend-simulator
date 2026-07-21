@@ -121,18 +121,18 @@ docs/tasks/task3_rule_based_roi_gate.md
   - [x] image sequence loader 구현
   - [x] `FramePacket` 생성
   - [x] annotation loader 확장 지점 준비
-- [ ] Task 3. Rule-based ROI Gate Emulator
-  - [ ] gray 변환 및 resize
-  - [ ] frame difference
-  - [ ] ON/OFF event-like map 생성
-  - [ ] threshold 기반 motion map
-  - [ ] morphology 및 small component filtering
-  - [ ] connected component 기반 ROI 후보 생성
-  - [ ] ROI merge
-  - [ ] ROI margin 및 원본 좌표 변환
-  - [ ] temporal hold
-  - [ ] periodic full-frame trigger
-  - [ ] ROI 과다/대면적 full-frame fallback
+- [x] Task 3. Rule-based ROI Gate Emulator
+  - [x] gray 변환 및 resize
+  - [x] frame difference
+  - [x] ON/OFF event-like map 생성
+  - [x] threshold 기반 motion map
+  - [x] morphology 및 small component filtering
+  - [x] connected component 기반 ROI 후보 생성
+  - [x] ROI merge
+  - [x] ROI margin 및 원본 좌표 변환
+  - [x] temporal hold
+  - [x] periodic full-frame trigger
+  - [x] ROI 과다/대면적 full-frame fallback
 - [ ] Task 4. ROI Metadata 저장
   - [ ] ROI metadata schema 확정
   - [ ] JSONL writer 구현
@@ -218,7 +218,7 @@ outputs/
 
 초기에는 OD-VIRAT Tiny 또는 VIRAT 일부 시퀀스를 대상으로 한다.
 
-### [ ] Task 3. Rule-based ROI Gate Emulator
+### [x] Task 3. Rule-based ROI Gate Emulator
 
 목표:
 
@@ -346,7 +346,10 @@ vision-frontend-simulator/
 ├── requirements.txt
 ├── docs/
 │   ├── npx_gate_phase1_validation_plan.md
-│   └── vision_frontend_validation_roadmap.md
+│   ├── vision_frontend_validation_roadmap.md
+│   └── tasks/
+│       ├── task2_dataset_stream_loader.md
+│       └── task3_rule_based_roi_gate.md
 ├── .agents/
 │   └── project_context.md
 ├── configs/
@@ -363,6 +366,7 @@ vision-frontend-simulator/
 │   ├── event_encoder.py
 │   ├── motion_detector.py
 │   ├── roi_generator.py
+│   ├── gate.py
 │   ├── temporal_hold.py
 │   └── metadata.py
 ├── gpu_inference/
@@ -380,7 +384,8 @@ vision-frontend-simulator/
 │   ├── inspect_dataset_stream.py
 │   └── compare_results.py
 ├── tests/
-│   └── test_dataset_stream.py
+│   ├── test_dataset_stream.py
+│   └── test_npx_gate.py
 └── outputs/
     ├── detections/
     ├── roi_metadata/
@@ -476,12 +481,12 @@ Rule-based ROI Gate의 한계 사례가 명확히 수집됨
 
 ## 12. 다음 작업
 
-바로 다음 구현 작업은 Task 3이다.
+바로 다음 구현 작업은 Task 4이다.
 
 ```text
-1. preprocess helper 최소 동작 검증
-2. event map 생성 검증
-3. motion map filtering 검증
-4. ROI candidate/merge/margin 좌표 변환 검증
-5. temporal hold와 full-frame fallback 정책 연결
+1. GateDecision을 ROIMetadata로 변환
+2. ROI metadata schema와 trigger type 기록 확인
+3. JSONL writer append/write 정책 정리
+4. rule_roi.jsonl 생성 script 연결
+5. Task 4 구현 설명 문서 작성
 ```

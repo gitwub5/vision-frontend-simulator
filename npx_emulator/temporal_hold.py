@@ -19,6 +19,12 @@ class TemporalHold:
         self._held: list[HeldROI] = []
 
     def update(self, current_rois: list[ROI]) -> list[ROI]:
+        if current_rois:
+            self._held = [HeldROI(roi, self.hold_frames) for roi in current_rois]
+            return [item.roi for item in self._held]
+
         self._held = [HeldROI(item.roi, item.remaining_frames - 1) for item in self._held if item.remaining_frames > 1]
-        self._held.extend(HeldROI(roi, self.hold_frames) for roi in current_rois)
         return [item.roi for item in self._held]
+
+    def clear(self) -> None:
+        self._held = []
