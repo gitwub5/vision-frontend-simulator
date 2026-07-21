@@ -94,6 +94,7 @@ vision-frontend-simulator/
 │   └── tasks/
 │       ├── task2_dataset_stream_loader.md
 │       ├── task3_rule_based_roi_gate.md
+│       └── task5_full_frame_yolo_baseline.md
 │       └── task4_roi_metadata.md
 ├── .agents/
 │   └── project_context.md
@@ -197,6 +198,7 @@ python tools/download_sample_data.py --dataset virat-aerial-sample
 - `docs/smoke_test.md`: 고정 카메라 synthetic smoke test 생성 및 실행 방법
 - `docs/tasks/task2_dataset_stream_loader.md`: Dataset Stream Loader 구현 의도와 사용법
 - `docs/tasks/task3_rule_based_roi_gate.md`: Rule-based ROI Gate 구현 의도와 사용법
+- `docs/tasks/task5_full_frame_yolo_baseline.md`: Full-frame YOLO baseline 구현 의도와 사용법
 - `docs/tasks/task4_roi_metadata.md`: ROI metadata 저장 구현 의도와 사용법
 - `docs/vision_frontend_validation_roadmap.md`: 장기 검증 로드맵
 - `.agents/project_context.md`: Codex 또는 자동화 agent가 먼저 확인할 문서 목록과 작업 원칙

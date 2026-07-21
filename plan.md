@@ -139,11 +139,11 @@ docs/tasks/task3_rule_based_roi_gate.md
   - [x] JSONL writer 구현
   - [x] frame별 trigger type 기록
   - [x] crop inference/evaluation에서 재사용 가능한 형식 확인
-- [ ] Task 5. Full-frame YOLO Baseline
-  - [ ] YOLOv8n full-frame inference 구현
-  - [ ] detection JSONL 저장
-  - [ ] latency 측정
-  - [ ] workload metric 기록
+- [x] Task 5. Full-frame YOLO Baseline
+  - [x] YOLOv8n full-frame inference 구현
+  - [x] detection JSONL 저장
+  - [x] latency 측정
+  - [x] workload metric 기록
 - [ ] Task 6. ROI YOLO Inference
   - [ ] ROI crop 생성
   - [ ] crop YOLO inference 구현
@@ -280,7 +280,7 @@ outputs/roi_metadata/gate_decisions.jsonl
 }
 ```
 
-### [ ] Task 5. Full-frame YOLO Baseline
+### [x] Task 5. Full-frame YOLO Baseline
 
 목표:
 
@@ -362,6 +362,7 @@ vision-frontend-simulator/
 │   └── tasks/
 │       ├── task2_dataset_stream_loader.md
 │       ├── task3_rule_based_roi_gate.md
+│       └── task5_full_frame_yolo_baseline.md
 │       └── task4_roi_metadata.md
 ├── .agents/
 │   └── project_context.md
