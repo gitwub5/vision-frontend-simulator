@@ -14,6 +14,10 @@ venv/
 
 # Experiment outputs and local data
 outputs/*
+outputs/detections/*
+outputs/roi_metadata/*
+outputs/visualizations/*
+outputs/reports/*
 !outputs/.gitkeep
 !outputs/detections/
 !outputs/detections/.gitkeep
