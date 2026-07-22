@@ -23,7 +23,7 @@ comparison_report.md
 - `evaluation/__init__.py`
 - `experiments/compare_results.py`
 - `tests/test_evaluation.py`
-- `plan.md`
+- `docs/plan/phase1_implementation_plan.md`
 - `README.md`
 
 ## 핵심 설계 결정

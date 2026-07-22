@@ -1,38 +1,16 @@
 # Vision Frontend Simulator
 
-Vision Frontend Simulator는 카메라와 GPU 사이에 위치하는 Vision Frontend Gate 또는 NPX Gate의 효과를 소프트웨어로 먼저 검증하기 위한 사내 시뮬레이션 프로젝트입니다.
+Vision Frontend Simulator는 카메라와 GPU 사이에 위치할 Vision Frontend Gate 또는 NPX Gate의 효과를 소프트웨어로 먼저 검증하기 위한 사내 시뮬레이션 프로젝트입니다.
 
-이 프로젝트의 목적은 실제 하드웨어, 보드, 칩 구현 전에 ROI 기반 전처리 게이트가 GPU inference workload를 줄일 수 있는지 확인하는 것입니다.
+목표는 실제 하드웨어, 보드, 칩 구현 전에 **ROI 기반 전처리 게이트가 객체 탐지 성능을 유지하면서 GPU inference workload를 줄일 수 있는지** 확인하는 것입니다.
 
-## 핵심 검증 질문
+초기 검증에서는 실제 NPX 하드웨어나 SNN 모델을 사용하지 않고, OpenCV 기반 rule-based 영상처리로 ROI Gate를 에뮬레이션합니다.
 
-> 전체 프레임을 매번 GPU에 넣는 방식 대비, Vision Frontend Gate가 필요한 ROI만 선별해 GPU에 전달하면 객체 탐지 성능을 유지하면서 GPU 사용량을 줄일 수 있는가?
+## 현재 범위
 
-초기 검증에서는 실제 NPX 하드웨어나 SNN 모델을 사용하지 않습니다. 대신 OpenCV 기반 rule-based 영상처리로 ROI Gate를 에뮬레이션하고, YOLOv8 inference workload 감소 효과를 측정합니다.
+현재 우선순위는 **Phase 1. Rule-based ROI Gate 검증**입니다.
 
-## 검증 로드맵
-
-```text
-Phase 1. Rule-based ROI Gate 검증
-    ↓
-Phase 2. SNN Tile Eventness Model 검증
-    ↓
-Phase 3. Multi-camera Simulation
-    ↓
-Phase 4. GPU Pipeline Optimization
-    ↓
-Phase 5. Hardware-oriented Spec 도출
-    ↓
-Phase 6. 실제 Edge Pipeline PoC
-    ↓
-Phase 7. 사업화 기준 검증
-```
-
-현재 우선 구현 범위는 **Phase 1. Rule-based ROI Gate 검증**입니다.
-
-## Phase 1 범위
-
-Phase 1에서는 다음 세 가지 방식을 비교합니다.
+Phase 1에서는 다음 흐름을 비교합니다.
 
 ```text
 A. Full-frame YOLOv8
@@ -40,188 +18,82 @@ B. Rule-based ROI Gate + ROI YOLOv8
 C. Rule-based ROI Gate + ROI YOLOv8 + Periodic Full-frame Check
 ```
 
-구현 항목:
+Phase 1의 구현 현황, 체크리스트, R&R은 [docs/plan/phase1_implementation_plan.md](docs/plan/phase1_implementation_plan.md)를 기준으로 관리합니다.
 
-- Dataset video 또는 image sequence loader
-- Full-frame YOLOv8 baseline
-- Gray 변환 및 low-resolution analysis frame 생성
-- Frame difference 기반 motion map 생성
-- ON/OFF event-like map 생성 구조
-- Noise filtering
-- Connected component 기반 ROI 생성
-- ROI merge
-- Temporal hold
-- Periodic full-frame check
-- ROI crop 생성
-- ROI crop 기반 YOLOv8 inference
-- Detection 좌표 원본 frame 기준 복원
-- Workload, recall, ROI 품질 비교 리포트
-- ROI 및 detection 시각화
+작업할 때는 다음 원칙을 지킵니다.
 
-## 성공 기준
+- Task 진행 상태를 바꾸면 `docs/plan/phase1_implementation_plan.md`를 함께 수정합니다.
+- Task 구현이 끝나면 `docs/tasks/` 아래에 구현 설명 문서를 남깁니다.
+- Phase별 상세 검증 계획이나 다음 Phase 계획은 `docs/plan/` 아래에 정리합니다.
+- 대용량 dataset, model weight, 실험 output은 Git에 포함하지 않습니다.
 
-Phase 1의 최소 성공 기준은 다음과 같습니다.
+## 빠른 실행
 
-```text
-Object Recall 유지율 >= 95%
-ROI Containment Rate >= 98%
-YOLO 입력 면적 감소율 >= 50%
-평균 ROI 수 <= 3
-평균 ROI 면적 <= 전체 프레임의 30%
-Gate latency <= 10ms/frame
+가상환경을 권장합니다.
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-Phase 2로 넘어가기 위한 기준은 다음과 같습니다.
-
-```text
-Object Recall 유지율 >= 98%
-YOLO workload reduction >= 50%
-Rule-based ROI Gate의 한계 사례 수집 완료
-```
-
-## 권장 프로젝트 구조
-
-```text
-vision-frontend-simulator/
-├── README.md
-├── plan.md
-├── requirements.txt
-├── docs/
-│   ├── npx_gate_phase1_validation_plan.md
-│   ├── sample_data.md
-│   ├── smoke_test.md
-│   ├── vision_frontend_validation_roadmap.md
-│   └── tasks/
-│       ├── task2_dataset_stream_loader.md
-│       ├── task3_rule_based_roi_gate.md
-│       ├── task4_roi_metadata.md
-│       ├── task5_full_frame_yolo_baseline.md
-│       ├── task6_roi_yolo_inference.md
-│       ├── task7_evaluation.md
-│       └── task8_visualization.md
-├── .agents/
-│   └── project_context.md
-├── configs/
-│   ├── dataset.yaml
-│   ├── dataset.smoke.yaml
-│   ├── npx_gate.yaml
-│   ├── npx_gate.smoke.yaml
-│   └── yolo.yaml
-├── common/
-│   └── schemas.py
-├── data_loader/
-│   ├── dataset_stream.py
-│   └── annotation_loader.py
-├── npx_emulator/
-│   ├── preprocess.py
-│   ├── event_encoder.py
-│   ├── motion_detector.py
-│   ├── roi_generator.py
-│   ├── gate.py
-│   ├── temporal_hold.py
-│   └── metadata.py
-├── gpu_inference/
-│   ├── yolo_full_frame.py
-│   ├── yolo_roi.py
-│   └── coordinate_restore.py
-├── evaluation/
-│   ├── comparison_report.py
-│   ├── detection_metrics.py
-│   ├── roi_containment.py
-│   ├── workload_metrics.py
-│   └── latency_metrics.py
-├── visualization/
-│   └── renderer.py
-├── experiments/
-│   ├── run_full_frame_baseline.py
-│   ├── run_roi_yolo_inference.py
-│   ├── run_rule_roi_baseline.py
-│   ├── inspect_dataset_stream.py
-│   ├── render_visualizations.py
-│   └── compare_results.py
-├── tests/
-│   ├── test_dataset_stream.py
-│   ├── test_npx_gate.py
-│   ├── test_roi_metadata.py
-│   ├── test_yolo_full_frame.py
-│   ├── test_yolo_roi.py
-│   ├── test_evaluation.py
-│   └── test_visualization.py
-├── tools/
-│   ├── download_sample_data.py
-│   └── create_smoke_video.py
-└── outputs/
-    ├── detections/
-    ├── roi_metadata/
-    ├── visualizations/
-    └── reports/
-```
-
-## 주요 산출물
-
-예상 산출물은 다음과 같습니다.
-
-```text
-outputs/detections/full_frame.jsonl
-outputs/detections/roi_yolo.jsonl
-outputs/roi_metadata/rule_roi.jsonl
-outputs/roi_metadata/gate_decisions.jsonl
-outputs/reports/full_frame_metrics.json
-outputs/reports/roi_yolo_metrics.json
-outputs/reports/comparison_report.json
-outputs/reports/comparison_report.md
-outputs/visualizations/
-```
-
-## 초기 데이터셋
-
-개발 중 smoke test는 외부 dataset 대신 synthetic fixed-camera video를 사용합니다.
+Synthetic fixed-camera smoke video 생성:
 
 ```bash
 python tools/create_smoke_video.py
-python experiments/run_rule_roi_baseline.py --dataset-config configs/dataset.smoke.yaml --limit 60
 ```
 
-공개 sample data는 아래 도구로 준비할 수 있습니다.
+Rule-based ROI Gate smoke 실행:
 
 ```bash
-python tools/download_sample_data.py --list
-python tools/download_sample_data.py --dataset virat-aerial-sample
+python experiments/run_rule_roi_baseline.py \
+  --dataset-config configs/dataset.smoke.yaml \
+  --gate-config configs/npx_gate.smoke.yaml \
+  --limit 60
 ```
 
-우선순위 데이터셋:
+테스트:
 
-- OD-VIRAT Tiny
-- VIRAT 일부 시퀀스
+```bash
+python -m unittest discover -s tests
+```
 
-초기에는 전체 데이터셋보다 다음 조건을 만족하는 일부 시퀀스부터 사용합니다.
+## 폴더 구조
 
-- 고정 카메라
-- 사람 또는 차량 등장
-- annotation 또는 full-frame YOLO pseudo baseline 확보 가능
-- 조명 변화와 배경 변화가 지나치게 극단적이지 않음
+| 경로 | 용도 |
+|---|---|
+| `README.md` | 프로젝트 목적, 실행 방법, 폴더 역할을 안내하는 첫 문서 |
+| `.agents/` | Codex 또는 자동화 agent가 먼저 읽을 작업 기준 |
+| `docs/plan/` | Phase별 구현 계획, 검증 계획, 다음 단계 계획 |
+| `docs/tasks/` | Task별 구현 설명 문서 |
+| `docs/assets/` | 문서에서 사용하는 대표 이미지와 시각화 예시 |
+| `configs/` | dataset, gate, YOLO 실험 설정 |
+| `common/` | loader, gate, inference, evaluation이 공유하는 schema |
+| `data_loader/` | video/image sequence 입력을 `FramePacket`으로 변환 |
+| `npx_emulator/` | rule-based ROI Gate emulator |
+| `gpu_inference/` | full-frame YOLO, ROI YOLO, 좌표 복원 |
+| `evaluation/` | recall, ROI containment, workload, latency 비교 |
+| `visualization/` | ROI overlay, detection comparison, failure case 렌더링 |
+| `experiments/` | 각 모듈을 연결해서 산출물을 생성하는 실행 스크립트 |
+| `tools/` | sample data 다운로드, smoke video 생성 등 보조 도구 |
+| `tests/` | 단위 테스트 |
+| `outputs/` | 실험 결과 저장 위치. 대용량 결과는 Git 제외 |
+| `data/` | dataset 저장 위치. Git 제외 |
 
-## 문서 구성
+## 주요 문서
 
-- `README.md`: 프로젝트 소개와 협업자가 알아야 할 요약
-- `plan.md`: 구현 순서와 현재 작업 계획
-- `docs/npx_gate_phase1_validation_plan.md`: Phase 1 상세 검증 계획
-- `docs/sample_data.md`: 공개 sample data 다운로드와 수동 준비 안내
-- `docs/smoke_test.md`: 고정 카메라 synthetic smoke test 생성 및 실행 방법
-- `docs/smoke_test_visualization_result.md`: Task 8 smoke visualization 실행 결과와 대표 이미지
-- `docs/tasks/task2_dataset_stream_loader.md`: Dataset Stream Loader 구현 의도와 사용법
-- `docs/tasks/task3_rule_based_roi_gate.md`: Rule-based ROI Gate 구현 의도와 사용법
-- `docs/tasks/task4_roi_metadata.md`: ROI metadata 저장 구현 의도와 사용법
-- `docs/tasks/task5_full_frame_yolo_baseline.md`: Full-frame YOLO baseline 구현 의도와 사용법
-- `docs/tasks/task6_roi_yolo_inference.md`: ROI YOLO inference 구현 의도와 사용법
-- `docs/tasks/task7_evaluation.md`: Evaluation 구현 의도와 사용법
-- `docs/tasks/task8_visualization.md`: Visualization 구현 의도와 사용법
-- `docs/vision_frontend_validation_roadmap.md`: 장기 검증 로드맵
-- `.agents/project_context.md`: Codex 또는 자동화 agent가 먼저 확인할 문서 목록과 작업 원칙
+| 문서 | 용도 |
+|---|---|
+| [docs/plan/phase1_implementation_plan.md](docs/plan/phase1_implementation_plan.md) | Phase 1 구현 체크리스트, R&R, 다음 작업 |
+| [docs/plan/phase1_validation_plan.md](docs/plan/phase1_validation_plan.md) | Phase 1 상세 검증 계획 |
+| [docs/plan/vision_frontend_validation_roadmap.md](docs/plan/vision_frontend_validation_roadmap.md) | Phase 2 이후 장기 로드맵 |
+| [docs/sample_data.md](docs/sample_data.md) | 공개 sample data 준비 방법 |
+| [docs/smoke_test.md](docs/smoke_test.md) | synthetic fixed-camera smoke test 사용법 |
+| [docs/smoke_test_visualization_result.md](docs/smoke_test_visualization_result.md) | smoke visualization 실행 결과 |
 
 ## 협업 메모
 
-- Phase 1에서는 SNN, 실제 NPX 하드웨어, RTSP, DeepStream, TensorRT를 구현하지 않습니다.
-- 실험 config는 결과 재현성에 직접 영향을 주므로 report에 함께 기록합니다.
-- ROI metadata schema는 inference, evaluation, visualization이 공유하는 인터페이스로 관리합니다.
-- `outputs/`에는 실험 결과가 저장되며, 대용량 결과물은 Git에 포함하지 않는 방향을 권장합니다.
+- `common/schemas.py` 변경은 전체 pipeline에 영향을 주므로 사전에 공유합니다.
+- `configs/*.yaml` 변경은 실험 결과에 영향을 주므로 report 또는 plan 문서에 이유를 남깁니다.
+- ROI metadata schema는 inference, evaluation, visualization이 공유하는 계약으로 취급합니다.
+- Phase 1에서는 SNN, 실제 NPX 하드웨어, RTSP, DeepStream, TensorRT를 직접 구현하지 않습니다.

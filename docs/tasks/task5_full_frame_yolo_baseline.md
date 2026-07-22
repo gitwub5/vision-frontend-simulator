@@ -20,7 +20,7 @@ Detection JSONL + full-frame metrics
 - `experiments/run_full_frame_baseline.py`
 - `tests/test_yolo_full_frame.py`
 - `requirements.txt`
-- `plan.md`
+- `docs/plan/phase1_implementation_plan.md`
 
 ## 핵심 설계 결정
 
