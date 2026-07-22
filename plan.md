@@ -149,14 +149,14 @@ docs/tasks/task3_rule_based_roi_gate.md
   - [x] crop YOLO inference 구현
   - [x] crop detection 좌표 원본 좌표로 복원
   - [x] periodic full-frame check 결과 병합
-- [ ] Task 7. Evaluation
-  - [ ] recall 유지율 계산
-  - [ ] ROI containment rate 계산
-  - [ ] YOLO 호출 수 감소율 계산
-  - [ ] YOLO 입력 픽셀 면적 감소율 계산
-  - [ ] 평균 ROI 수와 평균 ROI 면적 계산
-  - [ ] gate latency 계산
-  - [ ] comparison report 생성
+- [x] Task 7. Evaluation
+  - [x] recall 유지율 계산
+  - [x] ROI containment rate 계산
+  - [x] YOLO 호출 수 감소율 계산
+  - [x] YOLO 입력 픽셀 면적 감소율 계산
+  - [x] 평균 ROI 수와 평균 ROI 면적 계산
+  - [x] gate latency 계산
+  - [x] comparison report 생성
 - [ ] Task 8. Visualization
   - [ ] ROI overlay 이미지 생성
   - [ ] full-frame detection과 ROI-gated detection 비교 시각화
@@ -314,7 +314,7 @@ outputs/detections/roi_yolo.jsonl
 outputs/reports/roi_yolo_metrics.json
 ```
 
-### [ ] Task 7. Evaluation
+### [x] Task 7. Evaluation
 
 목표:
 
@@ -364,7 +364,8 @@ vision-frontend-simulator/
 │       ├── task3_rule_based_roi_gate.md
 │       ├── task4_roi_metadata.md
 │       ├── task5_full_frame_yolo_baseline.md
-│       └── task6_roi_yolo_inference.md
+│       ├── task6_roi_yolo_inference.md
+│       └── task7_evaluation.md
 ├── .agents/
 │   └── project_context.md
 ├── configs/
@@ -391,6 +392,7 @@ vision-frontend-simulator/
 │   ├── yolo_roi.py
 │   └── coordinate_restore.py
 ├── evaluation/
+│   ├── comparison_report.py
 │   ├── detection_metrics.py
 │   ├── roi_containment.py
 │   ├── workload_metrics.py
@@ -406,7 +408,8 @@ vision-frontend-simulator/
 │   ├── test_npx_gate.py
 │   ├── test_roi_metadata.py
 │   ├── test_yolo_full_frame.py
-│   └── test_yolo_roi.py
+│   ├── test_yolo_roi.py
+│   └── test_evaluation.py
 ├── tools/
 │   ├── download_sample_data.py
 │   └── create_smoke_video.py
