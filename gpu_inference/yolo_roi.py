@@ -160,7 +160,7 @@ class RoiYoloRunner:
         results = self._predict(crop)
         metrics.latency_ms.append((perf_counter() - started) * 1000.0)
         metrics.roi_yolo_call_count += 1
-        metrics.roi_input_pixel_area += roi_record.roi.area()
+        metrics.roi_input_pixel_area += clipped_roi_area(packet, roi_record.roi)
 
         detections: list[Detection] = []
         for result in results:
@@ -238,6 +238,14 @@ def crop_frame(packet: FramePacket, roi: ROI) -> Any:
     if x2 <= x1 or y2 <= y1:
         raise ValueError(f"Invalid ROI crop for frame {packet.frame_id}: {roi}")
     return packet.frame[y1:y2, x1:x2]
+
+
+def clipped_roi_area(packet: FramePacket, roi: ROI) -> int:
+    x1 = max(0, roi.x)
+    y1 = max(0, roi.y)
+    x2 = min(packet.original_size.width, roi.x + roi.w)
+    y2 = min(packet.original_size.height, roi.y + roi.h)
+    return max(0, x2 - x1) * max(0, y2 - y1)
 
 
 def read_roi_metadata_jsonl(input_path: str | Path) -> list[ROIMetadata]:

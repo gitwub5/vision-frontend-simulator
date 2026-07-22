@@ -10,6 +10,7 @@ from gpu_inference.yolo_roi import (
     FULL_FRAME_CHECK_SOURCE,
     ROI_YOLO_SOURCE,
     RoiYoloRunner,
+    clipped_roi_area,
     crop_frame,
     read_gate_frame_metadata_jsonl,
     read_roi_metadata_jsonl,
@@ -78,7 +79,7 @@ class RoiYoloRunnerTest(unittest.TestCase):
         self.assertEqual(runner.last_metrics.full_frame_check_call_count, 1)
         self.assertEqual(runner.last_metrics.roi_yolo_call_count, 1)
         self.assertEqual(runner.last_metrics.yolo_call_count, 2)
-        self.assertEqual(runner.last_metrics.roi_input_pixel_area, 30 * 40)
+        self.assertEqual(runner.last_metrics.roi_input_pixel_area, 30 * 28)
         self.assertEqual(runner.last_metrics.full_frame_input_pixel_area, 64 * 48)
         self.assertIsInstance(model.calls[1], FakeCrop)
 
@@ -86,6 +87,15 @@ class RoiYoloRunnerTest(unittest.TestCase):
         crop = crop_frame(_packet(frame_id=1), ROI(x=60, y=40, w=20, h=20))
 
         self.assertEqual(crop.key, (slice(40, 48, None), slice(60, 64, None)))
+
+    def test_metrics_use_clipped_roi_area(self) -> None:
+        model = FakeModel()
+        runner = RoiYoloRunner("fake.pt", classes=("person",), model=model)
+
+        runner.run([_packet(frame_id=1)], [_roi_record(frame_id=1, roi=ROI(60, 40, 20, 20))])
+
+        self.assertEqual(clipped_roi_area(_packet(frame_id=1), ROI(60, 40, 20, 20)), 4 * 8)
+        self.assertEqual(runner.last_metrics.roi_input_pixel_area, 4 * 8)
 
     def test_metadata_readers_parse_jsonl_contract(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

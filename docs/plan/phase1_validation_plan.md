@@ -643,24 +643,7 @@ vision-frontend-simulator/
 
 ---
 
-### Task 3. Full-frame YOLO Baseline 구현
-
-목표:
-
-- YOLOv8n으로 전체 프레임 추론
-- detection 결과 저장
-- 처리 시간 측정
-
-출력:
-
-```text
-outputs/detections/full_frame.jsonl
-outputs/reports/full_frame_metrics.json
-```
-
----
-
-### Task 4. Rule-based NPX Gate Emulator 구현
+### Task 3. Rule-based NPX Gate Emulator 구현
 
 목표:
 
@@ -682,24 +665,61 @@ outputs/roi_metadata/rule_roi.jsonl
 
 ---
 
-### Task 5. ROI Crop YOLO 구현
+### Task 4. ROI Metadata 저장
+
+목표:
+
+- frame별 ROI 결과를 JSONL로 저장
+- frame별 trigger type과 full-frame check 여부 기록
+- crop inference와 평가 코드가 동일한 metadata를 사용하도록 설계
+
+출력:
+
+```text
+outputs/roi_metadata/rule_roi.jsonl
+outputs/roi_metadata/gate_decisions.jsonl
+```
+
+---
+
+### Task 5. Full-frame YOLO Baseline 구현
+
+목표:
+
+- YOLOv8n으로 전체 프레임 추론
+- detection 결과 저장
+- 처리 시간 측정
+- workload metric 기록
+
+출력:
+
+```text
+outputs/detections/full_frame.jsonl
+outputs/reports/full_frame_metrics.json
+```
+
+---
+
+### Task 6. ROI YOLO Inference 구현
 
 목표:
 
 - ROI metadata 기반 crop 생성
 - YOLOv8 추론
 - crop 좌표를 원본 좌표로 복원
+- periodic full-frame check 결과 병합
 - detection 결과 저장
 
 출력:
 
 ```text
 outputs/detections/roi_yolo.jsonl
+outputs/reports/roi_yolo_metrics.json
 ```
 
 ---
 
-### Task 6. 평가 코드 구현
+### Task 7. Evaluation 구현
 
 목표:
 
@@ -718,12 +738,13 @@ outputs/reports/comparison_report.md
 
 ---
 
-### Task 7. 시각화 구현
+### Task 8. Visualization 구현
 
 목표:
 
 - 원본 프레임 위에 ROI box와 YOLO 결과 표시
 - full-frame 결과와 ROI-gated 결과 비교 이미지 또는 영상 생성
+- 실패 사례 저장
 
 출력:
 
