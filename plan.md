@@ -144,11 +144,11 @@ docs/tasks/task3_rule_based_roi_gate.md
   - [x] detection JSONL 저장
   - [x] latency 측정
   - [x] workload metric 기록
-- [ ] Task 6. ROI YOLO Inference
-  - [ ] ROI crop 생성
-  - [ ] crop YOLO inference 구현
-  - [ ] crop detection 좌표 원본 좌표로 복원
-  - [ ] periodic full-frame check 결과 병합
+- [x] Task 6. ROI YOLO Inference
+  - [x] ROI crop 생성
+  - [x] crop YOLO inference 구현
+  - [x] crop detection 좌표 원본 좌표로 복원
+  - [x] periodic full-frame check 결과 병합
 - [ ] Task 7. Evaluation
   - [ ] recall 유지율 계산
   - [ ] ROI containment rate 계산
@@ -298,7 +298,7 @@ outputs/reports/full_frame_metrics.json
 
 초기에는 full-frame YOLO 결과를 pseudo baseline으로 사용한다. Dataset annotation이 준비되면 GT 기반 metric을 추가한다.
 
-### [ ] Task 6. ROI YOLO Inference
+### [x] Task 6. ROI YOLO Inference
 
 목표:
 
@@ -362,8 +362,9 @@ vision-frontend-simulator/
 │   └── tasks/
 │       ├── task2_dataset_stream_loader.md
 │       ├── task3_rule_based_roi_gate.md
-│       └── task5_full_frame_yolo_baseline.md
-│       └── task4_roi_metadata.md
+│       ├── task4_roi_metadata.md
+│       ├── task5_full_frame_yolo_baseline.md
+│       └── task6_roi_yolo_inference.md
 ├── .agents/
 │   └── project_context.md
 ├── configs/
@@ -396,13 +397,16 @@ vision-frontend-simulator/
 │   └── latency_metrics.py
 ├── experiments/
 │   ├── run_full_frame_baseline.py
+│   ├── run_roi_yolo_inference.py
 │   ├── run_rule_roi_baseline.py
 │   ├── inspect_dataset_stream.py
 │   └── compare_results.py
 ├── tests/
 │   ├── test_dataset_stream.py
 │   ├── test_npx_gate.py
-│   └── test_roi_metadata.py
+│   ├── test_roi_metadata.py
+│   ├── test_yolo_full_frame.py
+│   └── test_yolo_roi.py
 ├── tools/
 │   ├── download_sample_data.py
 │   └── create_smoke_video.py
