@@ -52,6 +52,20 @@ python experiments/run_rule_roi_baseline.py \
   --limit 60
 ```
 
+전체 Phase 1 실험 실행:
+
+```bash
+python experiments/run_phase1_experiment.py \
+  --dataset-config configs/dataset.opencv_vtest.yaml \
+  --gate-config configs/npx_gate.yaml \
+  --yolo-config configs/yolo.yaml \
+  --experiment-name opencv_vtest \
+  --limit 120
+```
+
+실험 결과는 `outputs/experiments/<timestamp>_<experiment_name>/` 아래에 묶어서 저장됩니다.
+Oxford Town Centre를 실행할 때는 `--gate-config configs/npx_gate.oxford.yaml`을 사용합니다.
+
 테스트:
 
 ```bash
@@ -77,7 +91,7 @@ python -m unittest discover -s tests
 | `experiments/` | 각 모듈을 연결해서 산출물을 생성하는 실행 스크립트 |
 | `tools/` | sample data 다운로드, smoke video 생성 등 보조 도구 |
 | `tests/` | 단위 테스트 |
-| `outputs/` | 실험 결과 저장 위치. 대용량 결과는 Git 제외 |
+| `outputs/` | 실험 결과 저장 위치. 실행 단위 결과는 `outputs/experiments/` 아래에 저장 |
 | `data/` | dataset 저장 위치. Git 제외 |
 
 ## 주요 문서

@@ -30,30 +30,33 @@ class SampleDataset:
 
 
 SAMPLES: dict[str, SampleDataset] = {
-    "virat-aerial-sample": SampleDataset(
-        key="virat-aerial-sample",
-        description="Public VIRAT-Aerial sample video for pipeline smoke testing.",
-        output_path=Path("data/virat_aerial/09152008flight2tape3_1.mpg"),
-        config_path=Path("configs/dataset.virat_aerial_sample.yaml"),
-        url="https://data.kitware.com/api/v1/item/56f580928d777f753209c73b/download",
-        expected_size_bytes=189_933_392,
+    "opencv-vtest": SampleDataset(
+        key="opencv-vtest",
+        description="OpenCV fixed-camera pedestrian sample video.",
+        output_path=Path("data/opencv_vtest/vtest.avi"),
+        config_path=Path("configs/dataset.opencv_vtest.yaml"),
+        url="https://raw.githubusercontent.com/opencv/opencv/master/samples/data/vtest.avi",
+        expected_size_bytes=None,
         usage_note=(
-            "VIRAT-Aerial is described by Kitware as Distribution A: Public Release, "
-            "Distribution Unlimited. It is an aerial/moving-camera sample and should "
-            "only be used for pipeline smoke testing, not fixed-camera ROI quality validation."
+            "OpenCV vtest.avi is a small fixed-camera pedestrian sample. Use it for "
+            "local Phase 1 pipeline validation before preparing Oxford Town Centre, "
+            "OD-VIRAT, or internal CCTV data."
         ),
     ),
-    "virat-ground": SampleDataset(
-        key="virat-ground",
-        description="VIRAT Ground fixed-camera dataset.",
-        output_path=Path("data/virat_ground/"),
-        config_path=Path("configs/dataset.virat_ground_sample.yaml"),
+    "oxford-town-centre": SampleDataset(
+        key="oxford-town-centre",
+        description="Oxford Town Centre fixed CCTV pedestrian dataset.",
+        output_path=Path("data/oxford_town_centre/TownCentreXVID.mp4"),
+        config_path=Path("configs/dataset.oxford_town_centre.yaml"),
         url=None,
         expected_size_bytes=None,
         usage_note=(
-            "VIRAT Ground is suitable for Phase 1 fixed-camera validation, but it has a "
-            "dataset usage agreement. Download it manually after satisfying the dataset terms, "
-            "then create a matching dataset config."
+            "Oxford Town Centre is a fixed CCTV pedestrian dataset and is a good "
+            "Phase 1 validation candidate, but the original publisher page is no "
+            "longer reliably available and public mirrors may require terms, login, "
+            "or torrent tooling. Download it manually only after checking whether "
+            "your intended use is allowed. Place the video at "
+            "data/oxford_town_centre/TownCentreXVID.mp4."
         ),
         auto_download=False,
     ),

@@ -1,7 +1,7 @@
 dataset:
   type: video
-  input_path: data/virat_aerial/09152008flight2tape3_1.mpg
-  camera_id: virat_aerial_01
+  input_path: data/opencv_vtest/vtest.avi
+  camera_id: opencv_vtest_01
   fps_override: null
   frame_limit: 120
   start_frame: 0
