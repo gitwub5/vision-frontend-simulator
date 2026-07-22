@@ -97,7 +97,8 @@ vision-frontend-simulator/
 │       ├── task4_roi_metadata.md
 │       ├── task5_full_frame_yolo_baseline.md
 │       ├── task6_roi_yolo_inference.md
-│       └── task7_evaluation.md
+│       ├── task7_evaluation.md
+│       └── task8_visualization.md
 ├── .agents/
 │   └── project_context.md
 ├── configs/
@@ -129,11 +130,14 @@ vision-frontend-simulator/
 │   ├── roi_containment.py
 │   ├── workload_metrics.py
 │   └── latency_metrics.py
+├── visualization/
+│   └── renderer.py
 ├── experiments/
 │   ├── run_full_frame_baseline.py
 │   ├── run_roi_yolo_inference.py
 │   ├── run_rule_roi_baseline.py
 │   ├── inspect_dataset_stream.py
+│   ├── render_visualizations.py
 │   └── compare_results.py
 ├── tests/
 │   ├── test_dataset_stream.py
@@ -141,7 +145,8 @@ vision-frontend-simulator/
 │   ├── test_roi_metadata.py
 │   ├── test_yolo_full_frame.py
 │   ├── test_yolo_roi.py
-│   └── test_evaluation.py
+│   ├── test_evaluation.py
+│   └── test_visualization.py
 ├── tools/
 │   ├── download_sample_data.py
 │   └── create_smoke_video.py
@@ -203,12 +208,14 @@ python tools/download_sample_data.py --dataset virat-aerial-sample
 - `docs/npx_gate_phase1_validation_plan.md`: Phase 1 상세 검증 계획
 - `docs/sample_data.md`: 공개 sample data 다운로드와 수동 준비 안내
 - `docs/smoke_test.md`: 고정 카메라 synthetic smoke test 생성 및 실행 방법
+- `docs/smoke_test_visualization_result.md`: Task 8 smoke visualization 실행 결과와 대표 이미지
 - `docs/tasks/task2_dataset_stream_loader.md`: Dataset Stream Loader 구현 의도와 사용법
 - `docs/tasks/task3_rule_based_roi_gate.md`: Rule-based ROI Gate 구현 의도와 사용법
 - `docs/tasks/task4_roi_metadata.md`: ROI metadata 저장 구현 의도와 사용법
 - `docs/tasks/task5_full_frame_yolo_baseline.md`: Full-frame YOLO baseline 구현 의도와 사용법
 - `docs/tasks/task6_roi_yolo_inference.md`: ROI YOLO inference 구현 의도와 사용법
 - `docs/tasks/task7_evaluation.md`: Evaluation 구현 의도와 사용법
+- `docs/tasks/task8_visualization.md`: Visualization 구현 의도와 사용법
 - `docs/vision_frontend_validation_roadmap.md`: 장기 검증 로드맵
 - `.agents/project_context.md`: Codex 또는 자동화 agent가 먼저 확인할 문서 목록과 작업 원칙
 

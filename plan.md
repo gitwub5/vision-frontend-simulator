@@ -157,10 +157,10 @@ docs/tasks/task3_rule_based_roi_gate.md
   - [x] 평균 ROI 수와 평균 ROI 면적 계산
   - [x] gate latency 계산
   - [x] comparison report 생성
-- [ ] Task 8. Visualization
-  - [ ] ROI overlay 이미지 생성
-  - [ ] full-frame detection과 ROI-gated detection 비교 시각화
-  - [ ] 실패 사례 저장
+- [x] Task 8. Visualization
+  - [x] ROI overlay 이미지 생성
+  - [x] full-frame detection과 ROI-gated detection 비교 시각화
+  - [x] 실패 사례 저장
 
 ### Phase 2 이후
 
@@ -333,7 +333,7 @@ outputs/reports/comparison_report.json
 outputs/reports/comparison_report.md
 ```
 
-### [ ] Task 8. Visualization
+### [x] Task 8. Visualization
 
 목표:
 
@@ -365,7 +365,8 @@ vision-frontend-simulator/
 │       ├── task4_roi_metadata.md
 │       ├── task5_full_frame_yolo_baseline.md
 │       ├── task6_roi_yolo_inference.md
-│       └── task7_evaluation.md
+│       ├── task7_evaluation.md
+│       └── task8_visualization.md
 ├── .agents/
 │   └── project_context.md
 ├── configs/
@@ -397,11 +398,14 @@ vision-frontend-simulator/
 │   ├── roi_containment.py
 │   ├── workload_metrics.py
 │   └── latency_metrics.py
+├── visualization/
+│   └── renderer.py
 ├── experiments/
 │   ├── run_full_frame_baseline.py
 │   ├── run_roi_yolo_inference.py
 │   ├── run_rule_roi_baseline.py
 │   ├── inspect_dataset_stream.py
+│   ├── render_visualizations.py
 │   └── compare_results.py
 ├── tests/
 │   ├── test_dataset_stream.py
@@ -409,7 +413,8 @@ vision-frontend-simulator/
 │   ├── test_roi_metadata.py
 │   ├── test_yolo_full_frame.py
 │   ├── test_yolo_roi.py
-│   └── test_evaluation.py
+│   ├── test_evaluation.py
+│   └── test_visualization.py
 ├── tools/
 │   ├── download_sample_data.py
 │   └── create_smoke_video.py
