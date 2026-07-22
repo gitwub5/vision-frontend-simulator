@@ -33,7 +33,7 @@ GateDecision
 - `npx_emulator/temporal_hold.py`
 - `requirements.txt`
 - `tests/test_npx_gate.py`
-- `plan.md`
+- `docs/plan/phase1_implementation_plan.md`
 - `README.md`
 
 ## 핵심 설계 결정

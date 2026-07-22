@@ -43,6 +43,7 @@ class EvaluationMetricsTest(unittest.TestCase):
 
     def test_reduction_ratio(self) -> None:
         self.assertEqual(reduction_ratio(100, 40), 0.6)
+        self.assertEqual(reduction_ratio(100, 120), -0.2)
         self.assertEqual(reduction_ratio(0, 40), 0.0)
 
 

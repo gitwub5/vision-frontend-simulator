@@ -9,7 +9,7 @@ from typing import Any
 def reduction_ratio(baseline: float, candidate: float) -> float:
     if baseline <= 0:
         return 0.0
-    return max(0.0, (baseline - candidate) / baseline)
+    return (baseline - candidate) / baseline
 
 
 @dataclass(frozen=True)

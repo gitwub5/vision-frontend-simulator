@@ -19,7 +19,7 @@ ROI overlay / detection comparison / failure case images
 - `visualization/__init__.py`
 - `experiments/render_visualizations.py`
 - `tests/test_visualization.py`
-- `plan.md`
+- `docs/plan/phase1_implementation_plan.md`
 - `README.md`
 
 ## 핵심 설계 결정

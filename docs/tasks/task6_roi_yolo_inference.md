@@ -22,7 +22,7 @@ restored Detection JSONL + ROI YOLO metrics
 - `gpu_inference/yolo_full_frame.py`
 - `experiments/run_roi_yolo_inference.py`
 - `tests/test_yolo_roi.py`
-- `plan.md`
+- `docs/plan/phase1_implementation_plan.md`
 - `README.md`
 
 ## 핵심 설계 결정
